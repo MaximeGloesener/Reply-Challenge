@@ -5,6 +5,8 @@ def read_input(filepath):
         for _ in range(R):
             dico = {}
             line = fin.readline().split()
+            for i in range(len(line)):
+                if line[i].isnumeric(): line[i] = int(line[i])
             if len(line) == 8:
                 dico['RI'], dico['RA'], dico['RP'], dico['RW'], dico['RM'], dico['RL'], dico['RU'], dico['RT'], dico['RE'] = line + [None]
             else:
