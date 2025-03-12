@@ -1,9 +1,8 @@
 from read_input import read_input, generate_output
 from game import Game
 
-filenames = ['0-demo', '1-thunberg', '2-attenborough', '4-maathai', '5-carson', '6-earle', '7-mckibben', '8-shiva']
+filenames = ['0-demo', '1-thunberg', '2-attenborough', '4-maathai', '6-earle', '8-shiva']
 
-best_profit = 0
 if __name__ == '__main__':
     for filename in filenames:
         D, R, T, ressources, turns = read_input(f'inputs/{filename}.txt')

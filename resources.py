@@ -27,9 +27,9 @@ class Resources:
         self.score = self.naive_score()
 
     def is_active(self):
-        if self.turn > self.RL:
+        if self.turn >= self.RL:
             return False
-        return self.turn % (self.RP + self.RW) < self.RP
+        return (self.turn % (self.RM + self.RW)) < self.RW
 
     def forward(self):
         self.turn += 1
@@ -38,6 +38,8 @@ class Resources:
         self.turn -= 1
 
     def applyEffect(self, game):
+        if not self.is_active():
+            return
         if self.RE == "A":
             game.building_powered_multiplier += self.RE/100
             game.building_powered_multiplier = max(game.building_powered_multiplier, 0)
@@ -51,6 +53,17 @@ class Resources:
             game.profit_mutliplier = max(game.profit_multiplier, 0)
 
     def naive_score(self):
-        score = (self.RA + self.RP) * (self.RW/self.RM) * self.RU
+        import random
+        score = self.RU
+        # score = (self.RU * self.RW) / (self.RA + self.RP * self.RL)
+        # score *= (1 + abs(int(self.RE)) / 100) if self.RE else 1
 
+        """
+        if self.RT == "A" and int(self.RE) > 0:
+            score*=2
+        if self.RT == "D" and int(self.RE)>0:
+            score*=2
+        if self.RT == "E" and int(self.RE)>0:
+            score*=2
+        """
         return score

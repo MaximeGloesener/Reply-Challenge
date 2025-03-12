@@ -1,7 +1,7 @@
 def read_input(filepath):
     with open(filepath, 'r') as fin:
         D, R, T = map(int, fin.readline().split())
-        ressources = []
+        ressources = {}
         for _ in range(R):
             dico = {}
             line = fin.readline().split()
@@ -11,11 +11,11 @@ def read_input(filepath):
                 dico['RI'], dico['RA'], dico['RP'], dico['RW'], dico['RM'], dico['RL'], dico['RU'], dico['RT'], dico['RE'] = line + [None]
             else:
                 dico['RI'], dico['RA'], dico['RP'], dico['RW'], dico['RM'], dico['RL'], dico['RU'], dico['RT'], dico['RE'] = line
-            ressources.append(dico)
+            ressources[dico['RI']] = dico
         turns = []
         for _ in range(T):
             dico = {}
-            dico['TM'], dico['TX'], dico['TR'],  = map(int, fin.readline().split())
+            dico['TM'], dico['TX'], dico['TR'] = map(int, fin.readline().split())
             turns.append(dico)
 
     return D, R, T, ressources, turns
