@@ -20,7 +20,13 @@ def read_input(filepath):
 
     return D, R, T, ressources, turns
 
-D, R, T, ressources, turns = read_input('inputs/0-demo.txt')
-print(D,R,T)
-print(ressources[0])
-print(turns[0])
+def generate_output(filepath, roadbook):
+    with open(filepath, 'w') as fout:
+
+        for t, ressources in roadbook.items():
+            if ressources:
+                line = f"{t} {len(ressources)}"
+                for r in ressources:
+                    line += f" {r}"
+                line += "\n"
+                fout.write(line)
